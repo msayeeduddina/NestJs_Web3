@@ -1,36 +1,45 @@
-import { Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
+import { BookDTO } from 'src/BookDTO/boot.dto';
 import { BookService } from 'src/BookService/book.service';
 
-@Controller('book')
-export class BookController {
+@Controller('bookService')
+export class BookServiceController {
   constructor(private bookService: BookService) {}
 
-  //AddBook
-  @Post('/addBook')
-  addBook(): string {
-    return this.bookService.addBook();
+  //AddBookService
+  @Post('/addBookService')
+  addBookService(@Body() body: BookDTO): string {
+    return this.bookService.addBookService(body);
   }
 
-  //DeleteBook
-  @Post('/deleteBook')
-  deleteBook(): string {
-    return this.bookService.deleteBook();
+  //DeleteBookService
+  @Delete('/deleteBookService/:bookServiceId')
+  deleteBookService(@Param('bookServiceId') bookId: string): string {
+    return this.bookService.deleteBookService(bookId);
   }
 
-  //UpdateBook
-  @Put('/updateBook')
-  updateBook(): string {
-    return this.bookService.updateBook();
+  //UpdateBookService
+  @Put('/updateBookService')
+  updateBookService(@Body() body: BookDTO): string {
+    return this.bookService.updateBookService(body);
   }
 
-  //FindAllBook
-  @Get('/findAllBook')
-  findAllBook(): string {
-    return this.bookService.findAllBook();
+  //FindAllBookService
+  @Get('/findAllBookService')
+  findAllBookService(): BookDTO[] {
+    return this.bookService.findAllBookService();
   }
 
-  @Get('/findBookById/:bookId')
-  findBookById(@Param('bookId') bookId: number) {
-    return this.bookService.findBookById(bookId);
+  @Get('/findBookServiceById/:bookServiceId')
+  findBookServiceById(@Param('bookServiceId') bookId: string) {
+    return this.bookService.findBookServiceById(bookId);
   }
 }
