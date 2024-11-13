@@ -5,3 +5,4 @@ describe('AuthenticationMiddleware', () => {
     expect(new AuthenticationMiddleware()).toBeDefined();
   });
 });
+//
