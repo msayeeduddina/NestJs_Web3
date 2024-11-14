@@ -6,8 +6,10 @@ import {
   Param,
   Post,
   Put,
+  UsePipes,
 } from '@nestjs/common';
 import { BookDTO } from 'src/BookDTO/boot.dto';
+import { BookPipe } from 'src/BookPipe/book.pipe';
 import { BookService } from 'src/BookService/book.service';
 
 @Controller('bookService')
@@ -39,6 +41,7 @@ export class BookServiceController {
   }
 
   @Get('/findBookServiceById/:bookServiceId')
+  @UsePipes(BookPipe)
   findBookServiceById(@Param('bookServiceId') bookId: string) {
     return this.bookService.findBookServiceById(bookId);
   }

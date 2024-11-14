@@ -8,9 +8,17 @@ import { BookService } from './BookService/book.service';
 import { BookService1 } from './BookService/book1.service';
 import { BookModule } from './BookModule/book.module';
 import { UsersModule } from './users/users.module';
+import { Book1Module } from './BookModule/book1.module';
 
 @Module({
-  imports: [UserModule, OrderModule, ChatModule, BookModule, UsersModule],
+  imports: [
+    UserModule,
+    OrderModule,
+    ChatModule,
+    BookModule,
+    Book1Module,
+    UsersModule,
+  ],
   controllers: [BookServiceController, Book1Controller],
   providers: [BookService, BookService1],
 })

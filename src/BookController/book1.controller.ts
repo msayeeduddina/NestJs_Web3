@@ -1,4 +1,13 @@
-import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  UsePipes,
+} from '@nestjs/common';
+import { Book1Pipe } from 'src/BookPipe/book1.pipe';
 import { BookService1 } from 'src/BookService/book1.service';
 
 @Controller('book')
@@ -30,6 +39,7 @@ export class Book1Controller {
   }
 
   @Get('/findBookById/:bookId')
+  @UsePipes(Book1Pipe)
   findBookById(@Param('bookId') bookId: number) {
     return this.bookService1.findBookById(bookId);
   }
