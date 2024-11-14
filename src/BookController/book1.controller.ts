@@ -6,9 +6,11 @@ import {
   Post,
   Put,
   UseFilters,
+  UseGuards,
   UsePipes,
 } from '@nestjs/common';
 import { BookExceptionFilter } from 'src/BookException/book.exception.filter';
+import { BookGuard } from 'src/BookGuard/book.guard';
 import { Book1Pipe } from 'src/BookPipe/book1.pipe';
 import { BookService1 } from 'src/BookService/book1.service';
 
@@ -36,6 +38,7 @@ export class Book1Controller {
 
   //FindAllBook
   @Get('/findAllBook')
+  @UseGuards(BookGuard)
   findAllBook(): string {
     return this.bookService1.findAllBook();
   }
