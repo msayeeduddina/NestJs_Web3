@@ -17,6 +17,7 @@ async function bootstrap() {
   const app = await NestFactory.create(RootModule);
   app.use(globalMiddleWareOne, globalMiddleWareTwo);
   app.useGlobalPipes(new ValidationPipe());
+  // app.useGlobalGuards(new BookGuard()); //Note: Applying Guard on all over the controller and routes
 
   await app.listen(process.env.PORT ?? 3000);
 }
