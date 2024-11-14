@@ -18,6 +18,7 @@ export class BookServiceController {
 
   //AddBookService
   @Post('/addBookService')
+  @UsePipes(BookPipe)
   addBookService(@Body() body: BookDTO): string {
     return this.bookService.addBookService(body);
   }
