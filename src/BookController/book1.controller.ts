@@ -5,8 +5,10 @@ import {
   Param,
   Post,
   Put,
+  UseFilters,
   UsePipes,
 } from '@nestjs/common';
+import { BookExceptionFilter } from 'src/BookException/book.exception.filter';
 import { Book1Pipe } from 'src/BookPipe/book1.pipe';
 import { BookService1 } from 'src/BookService/book1.service';
 
@@ -40,6 +42,7 @@ export class Book1Controller {
 
   @Get('/findBookById/:bookId')
   @UsePipes(Book1Pipe)
+  @UseFilters(BookExceptionFilter) //Note: with filter
   findBookById(@Param('bookId') bookId: number) {
     return this.bookService1.findBookById(bookId);
   }
